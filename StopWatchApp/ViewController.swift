@@ -11,6 +11,9 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var timerLabel: UILabel!
+    
+    var startTime: TimeInterval? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -22,10 +25,14 @@ class ViewController: UIViewController {
     }
 
     @objc func update() {
-        print(Date.timeIntervalSinceReferenceDate)
+        if let startTime = self.startTime {
+            let t: Double = Date.timeIntervalSinceReferenceDate - startTime
+            print(t)
+        }
     }
 
     @IBAction func startTimer(_ sender: Any) {
+        self.startTime = Date.timeIntervalSinceReferenceDate
         Timer.scheduledTimer(
             timeInterval: 0.01,
             target: self,
