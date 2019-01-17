@@ -27,7 +27,10 @@ class ViewController: UIViewController {
     @objc func update() {
         if let startTime = self.startTime {
             let t: Double = Date.timeIntervalSinceReferenceDate - startTime
-            print(t)
+            let min = Int(t / 60)
+            let sec = Int(t) % 60
+            let msec = Int((t - Double(sec)) * 100.0)
+            self.timerLabel.text = String(format: "%02d:%02d:%02d", min, sec, msec)
         }
     }
 
